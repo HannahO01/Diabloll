@@ -1,10 +1,20 @@
 #pragma once
+#include <random>
 
-namespace Tools
+namespace Random
 {
-	int RandomNumber(int aMinimal, int aMax);
+	int RandomNumber(int aMinimal, int aMax)
+	{
+
+		std::random_device rd;
+		std::uniform_int_distribution<int> dist(aMinimal, aMax);
+		return dist(rd);
+	}
+
 }
-class ToolsC
+
+
+class Tools
 {
 public:
 	static void DeleteText();

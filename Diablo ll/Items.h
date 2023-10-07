@@ -3,7 +3,9 @@
 #include <iostream>
 class Items
 {
-	Items(int aHp, int aStregnth, int aStealth, int aMaxWeight, std::string anItemName);
+	Items(int aHp, int aStregnth, int aStealth, int aMaxWeight, std::string anItemName, bool someItemsAvailable) : myHp(aHp), myStrength(aStregnth), myStealth(aStealth), myMaxWeight(aMaxWeight), myItemName(anItemName)
+	{
+	}
 
 public:
 	int GetItem();

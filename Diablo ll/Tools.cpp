@@ -2,29 +2,17 @@
 #include<random>
 #include "Tools.h"
 
-namespace Tools
-{
-    int RandomNumber(int aMinimal, int aMax)
-    {
-
-        std::random_device rd;
-        std::uniform_int_distribution<int> dist(aMinimal, aMax);
-        return dist(rd);
-    }
-
-}
-
-void ToolsC::DeleteText()
+void Tools::DeleteText()
 {
     system("cls");
 }
 
-void ToolsC::Wait()
+void Tools::Wait()
 {
     system("pause");
 }
 
-void ToolsC::ClearTxt()
+void Tools::ClearTxt()
 {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

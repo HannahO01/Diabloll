@@ -12,7 +12,7 @@ Room::Room(bool aHasEnemies, std::string aRoomName)
     myDoors;
     if (aHasEnemies)
     {
-        int randomRoll = Tools::RandomNumber(1, 2);
+        int randomRoll = Random::RandomNumber(1, 10);
         for (size_t i = 0; i < randomRoll; i++)
         {
             AddEnemies(Enemy(50, 5, 5));
@@ -41,7 +41,7 @@ bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
 
     while (!myEnemies.empty() && aPlayer.GetStats().GetHp() > 0)
     {
-        ToolsC::DeleteText();
+        Tools::DeleteText();
         std::vector<int> enemiesRemove;
 
         std::cout << "Who would you like to attack? " << std::endl;
@@ -86,7 +86,7 @@ bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
                 break;
             }
             }
-            ToolsC::Wait();
+            Tools::Wait();
 
             //output if enemies is dead
             for (int i = 0; i < myEnemies.size(); i++)
@@ -113,11 +113,11 @@ bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
             }
 
             aPlayer.GetStats().PrintStats();
-            ToolsC::Wait();
+            Tools::Wait();
         }
         else
         {
-            ToolsC::ClearTxt();
+            Tools::ClearTxt();
             std::cout << "Please chose one of the enemies" << std::endl;
         }
     }
@@ -126,7 +126,7 @@ bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
     {
         std::cout << "[you dead]" << std::endl;
         return false;
-        ToolsC::Wait();
+        Tools::Wait();
     }
 
     aPlayer.IncrementWinningPoint();
@@ -142,7 +142,7 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
     int cheater = 10;
     int wonThisFight = 0;
 
-    std::string roomOptions[4] = { "[1, pick up item]", "[2, fight monster ?]", "[3, next room]", "[4, Leave]" };
+    std::string roomOptions[4] = { "[1, Musterius Chest]", "[2, fight monster ?]", "[3, next room]", "[4, Leave]" };
 
 
     while (aPlayer.GetStats().GetHp() > 0)
@@ -162,7 +162,7 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
             case items:
             {
                 //diablo 2
-                break;
+                continue;
             }
             case fight:
             {
@@ -229,7 +229,7 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
                         std::cin >> action;
                         if (action >= option || action < 0)
                         {
-                            ToolsC::ClearTxt();
+                            Tools::ClearTxt();
                             std::cout << "Please chose a door" << std::endl;
 
                         }
@@ -249,7 +249,7 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
                     std::cout << "You won!!!!" << std::endl;
                 }
                 std::cout << "[Leaving rooms]" << std::endl;
-                ToolsC::Wait();
+                Tools::Wait();
                 return -1;
                 break;
             }
@@ -257,10 +257,10 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
         }
         else
         {
-            ToolsC::ClearTxt();
+            Tools::ClearTxt();
             std::cout << "Please chose between the options" << std::endl;
         }
-        ToolsC::DeleteText();
+        Tools::DeleteText();
     }
 }
 

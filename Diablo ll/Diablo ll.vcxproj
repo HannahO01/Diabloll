@@ -144,7 +144,6 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Items.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="RandomGen.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Spells.h" />
     <ClInclude Include="Stats.h" />

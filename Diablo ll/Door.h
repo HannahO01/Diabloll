@@ -4,10 +4,6 @@
 
 class Door
 {
-	//keeps track of how many rooms there are
-	//track what room you've been in
-	//magical door that can come in between room 1-2
-	// locked or unloocked - if locked then you can do stuff to open it
 
 public:
 	Door(const int aRoomIndex1, const int aRoomIndex2, const bool aLoockedDoor, const std::string aColor);

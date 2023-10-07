@@ -19,7 +19,8 @@ int main()
 
     std::string playerName;
 
-    std::cout << "You are in hell, Welcome!" << '\n' << "Now, what are you? " << '\n' << "forget it i don't care about that just give me your name " << std::endl;
+    std::cout << "You are in hell, Welcome!" << '\n' << "Now, what are you? " << '\n' 
+        << "forget it i don't care about that just give me your name " << std::endl;
     while (true)
     {
         std::cin >> playerName;
@@ -29,8 +30,8 @@ int main()
             break;
         }
     }
-    ToolsC::Wait();
-    ToolsC::DeleteText();
+    Tools::Wait();
+    Tools::DeleteText();
     int winningPoints = 0;
     Player thePlayer = Player(100, 50, 10, playerName, winningPoints);
     thePlayer.GetStats().PrintStats();
@@ -92,18 +93,18 @@ int main()
     }
     else
     {
-        ToolsC::ClearTxt();
+        Tools::ClearTxt();
         std::cout << "Chose option [1, Enter] or [2, Leave]" << std::endl;
     }
 
     if (winningPoints == 2)
     {
         std::cout << "You won, congrats(?) " << std::endl;
-        ToolsC::Wait();
+        Tools::Wait();
     }
     else
     {
         std::cout << "Have a nice trip in hell... " << std::endl;
-        ToolsC::Wait();
+        Tools::Wait();
     }
 }

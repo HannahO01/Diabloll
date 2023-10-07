@@ -47,7 +47,7 @@ int Door::EnterDoor(Player& aPlayer)
             }
             else
             {
-                ToolsC::ClearTxt();
+                Tools::ClearTxt();
                 std::cout << "Chose between [1, Pick locket]    or      [2, Hit it HARD]" << std::endl;
             }
 

@@ -1,3 +1,4 @@
+#pragma once
 #include "Player.h"
 #include "Tools.h"
 #include "Stats.h"
@@ -8,7 +9,7 @@ Player::Player(int aHp, int aStrength, int aStealth, std::string aPlayerName, in
 
 int Player::AttackCrit()
 {
-    int randomCrit = Tools::RandomNumber(1, 10);
+    int randomCrit = Random::RandomNumber(1, 10);
     return (myStats.GetStrength() + myStats.GetStealth()) * randomCrit;
 }
 int Player::Block()
@@ -48,7 +49,7 @@ bool Player::ControllName(std::string& aPlayerName)
         }
         if (count < 3)
         {
-            ToolsC::ClearTxt();
+            Tools::ClearTxt();
             std::cout << "too little for the name, please try again: ";
             return false;
         }
@@ -74,9 +75,9 @@ bool Player::ControllNamewNumbers(std::string& aPlayerName)
         }
         if (wrong)
         {
-            ToolsC::ClearTxt();
+            Tools::ClearTxt();
             std::cout << "this contains a number please try again ";
-            ToolsC::Wait();
+            Tools::Wait();
             return false;
         }
         else
