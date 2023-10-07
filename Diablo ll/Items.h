@@ -3,20 +3,16 @@
 #include <iostream>
 class Items
 {
-	Items(int aHp, int aStregnth, int aStealth, int aMaxWeight, std::string anItemName, bool someItemsAvailable) : myHp(aHp), myStrength(aStregnth), myStealth(aStealth), myMaxWeight(aMaxWeight), myItemName(anItemName)
-	{
-	}
-
 public:
-	int GetItem();
-	int SetNewStat();
-	void AddItem();
+
+	Items(int aHp, int aStregnth, int aStealth, int aMaxWeight, std::string anItemName);
 
 private:
 	int myHp;
 	int myStrength;
 	int myStealth;
 	int myMaxWeight;
+
 	std::string myItemName;
 };
 /*Föremål

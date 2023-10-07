@@ -2,7 +2,7 @@
 #include "Stats.h"
 
 
-Enemy::Enemy(int aHp, int aStrength, int aStealth) : myStats(aHp, aStrength, aStealth)
+Enemy::Enemy(int aHp, int aStrength, int aStealth, int someInventory) : myStats(aHp, aStrength, aStealth, someInventory)
 {
 }
 

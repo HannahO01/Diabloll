@@ -33,13 +33,13 @@ int main()
     Tools::Wait();
     Tools::DeleteText();
     int winningPoints = 0;
-    Player thePlayer = Player(100, 50, 10, playerName, winningPoints);
+    Player thePlayer = Player(100, 50, 10, playerName, winningPoints,10);
     thePlayer.GetStats().PrintStats();
 
-    Room room0 = Room(true, "[Living room]");
-    Room room1 = Room(false, "[Bed Room]");
-    Room room2 = Room(true, "[Kitchen]");
-    Room room3 = Room(false, "[Closet]");
+    Room room0 = Room(true, "[Living room]", true);
+    Room room1 = Room(false, "[Bed Room]", false);
+    Room room2 = Room(true, "[Kitchen]", true);
+    Room room3 = Room(false, "[Closet]", true);
 
     std::vector<Room> roomList;
     roomList.push_back(room0);

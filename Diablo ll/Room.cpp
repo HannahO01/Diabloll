@@ -6,16 +6,44 @@
 #include "Enemy.h"
 #include "Stats.h"
 
-Room::Room(bool aHasEnemies, std::string aRoomName)
+Room::Room(bool aHasEnemies, std::string aRoomName, bool someItems)
 {
     myEnemies;
     myDoors;
+    myItems;
+    if(someItems)
+    {
+        int randomItem = Random::RandomNumber (1, 5);
+            switch(randomItem)
+            {
+            case 1:
+            {
+                AddItems (Items (40, 50, 2, 2, "Heavy Pillow"));
+            }
+            case 2:
+            {
+                AddItems (Items (200, 5, 5, 5, "Heavy Jacket"));
+            }
+            case 3:
+            {
+                AddItems (Items (1, 1, 1, 1, "smol rock"));
+            }
+            case 4:
+            {
+                AddItems (Items (500, 500, 500, 5, "Devils favorite snack"));
+            }
+            case 5:
+            {
+                AddItems (Items (100, 1, 1, 1, "One Sock"));
+            }
+            }
+    }
     if (aHasEnemies)
     {
-        int randomRoll = Random::RandomNumber(1, 10);
+        int randomRoll = Random::RandomNumber(1, 2);
         for (size_t i = 0; i < randomRoll; i++)
         {
-            AddEnemies(Enemy(50, 5, 5));
+            AddEnemies(Enemy(50, 5, 5,5));
         }
     }
     myRoomName = aRoomName;
@@ -29,6 +57,11 @@ void Room::AddEnemies(Enemy aEnemy)
 void Room::AddDoor(Door* aDoor)
 {
     myDoors.push_back(aDoor);
+}
+
+void Room::AddItems(Items anItem)
+{
+    myItems.push_back(anItem);
 }
 
 bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
@@ -137,21 +170,21 @@ bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
 int Room::EnterRoom(Player& aPlayer, int& whatRoom)
 {
     int action;
+    int pickUpItem;
     int winContintion = 0; //if  you kill all enemies 
     bool allowedToLeave = false;
     int cheater = 10;
     int wonThisFight = 0;
+    int someweirditem;
 
-    std::string roomOptions[4] = { "[1, Musterius Chest]", "[2, fight monster ?]", "[3, next room]", "[4, Leave]" };
-
+    std::string roomOptions[4] = { "[1, Open a Chest]", "[2, fight monster ?]", "[3, next room]", "[4, Leave]" };
+    if (aPlayer.GetWinningPoint() == 2)
+    {
+        roomOptions[3] = "[4, You Won!!]";
+    }
 
     while (aPlayer.GetStats().GetHp() > 0)
     {
-        if (aPlayer.GetWinningPoint() == 2)
-        {
-            roomOptions[3] = "[4, You Won!!]";
-        }
-
         std::cout << "What would you like to do? " << '\n'
             << roomOptions[0] << "    " << roomOptions[1] << "    " << roomOptions[2] << "    " << roomOptions[3] << std::endl;
         std::cin >> action;
@@ -162,6 +195,19 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
             case items:
             {
                 //diablo 2
+                std::cout << "Would you like to pick up the item?" << '\n' 
+                    << "[1, Yes]        [2, No]" << std::endl;
+                std::cin >> pickUpItem;
+
+                if (pickUpItem == 1) 
+                {
+                    myItems.size ();
+                }
+                else 
+                {
+
+                }
+
                 continue;
             }
             case fight:

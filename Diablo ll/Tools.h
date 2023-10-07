@@ -3,16 +3,8 @@
 
 namespace Random
 {
-	int RandomNumber(int aMinimal, int aMax)
-	{
-
-		std::random_device rd;
-		std::uniform_int_distribution<int> dist(aMinimal, aMax);
-		return dist(rd);
-	}
-
+	int RandomNumber(int aMinimal, int aMax);
 }
-
 
 class Tools
 {

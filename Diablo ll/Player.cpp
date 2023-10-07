@@ -3,7 +3,7 @@
 #include "Tools.h"
 #include "Stats.h"
 
-Player::Player(int aHp, int aStrength, int aStealth, std::string aPlayerName, int& aWinningPoint) : myPlayerName(aPlayerName), myStats(aHp, aStrength, aStealth), myCurrentRoom(0), myWinningPoint(aWinningPoint)
+Player::Player(int aHp, int aStrength, int aStealth, std::string aPlayerName, int& aWinningPoint, int aStorage) : myPlayerName(aPlayerName), myStats(aHp, aStrength, aStealth, aStorage), myCurrentRoom(0), myWinningPoint(aWinningPoint)
 {
 }
 
@@ -26,6 +26,11 @@ int Player::Hunger()
 int Player::PickingLock()
 {
     return myStats.GetStrength() + myStats.GetStealth();
+}
+
+int Player::MaxStorage ()
+{
+    return 0;
 }
 
 void Player::SetCurrentRoom(int aRoomIndex)
@@ -96,6 +101,13 @@ Stats& Player::GetStats()
     return myStats;
 }
 
+void Player::AddingItem(int someHp, int someStrength, int someStealth)
+{
+    myStats.SetHP(someHp);
+    myStats.SetStrength(someStrength);
+    myStats.SetStealth(someStealth);
+}
+
 void Player::TakeDamage(int someDamage)
 {
     int hpToSet = myStats.GetHp() - someDamage;
@@ -106,7 +118,6 @@ const int& Player::GetWinningPoint() const
 {
     return myWinningPoint;
 }
-
 void Player::IncrementWinningPoint()
 {
     myWinningPoint++;

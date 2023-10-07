@@ -5,11 +5,12 @@
 class Player
 {
 public:
-	Player(int aHp, int aStrength, int aStealth, std::string aPlayerName, int& aWinningPoint);
+	Player(int aHp, int aStrength, int aStealth, std::string aPlayerName, int& aWinningPoint, int aStorage);
 	int AttackCrit();	//could be like stealth + strength * random number 
 	int Block();		// could be randomized between strength and hp. wokring on this.
 	int Hunger();		// kill enemy on one hit but lose 50% of health 
 	int PickingLock(); // strength & stealth. working on this 
+	int MaxStorage ();
 
 	void SetCurrentRoom(int aRoomIndex);
 	int GetCurrentRoom();
@@ -17,8 +18,12 @@ public:
 	static bool ControllName(std::string& aPlayerName);
 	static bool ControllNamewNumbers(std::string& aPlayerName);
 	const std::string& GetName() const;
+
 	Stats& GetStats();
+
+	void AddingItem(int someHp, int someStrength, int someStealth);
 	void TakeDamage(int someDamage);
+
 	const int& GetWinningPoint() const;
 	void IncrementWinningPoint();
 

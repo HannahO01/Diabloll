@@ -1,7 +1,7 @@
 #include "Stats.h"
 #include "Player.h"
 
-Stats::Stats(int aHp, int aStrength, int aStealth) : myHp(aHp), myStrength(aStrength), myStealth(aStealth)
+Stats::Stats(int aHp, int aStrength, int aStealth, int someInventory) : myHp(aHp), myStrength(aStrength), myStealth(aStealth), myInventory(someInventory)
 {
 }
 
@@ -13,6 +13,16 @@ int Stats::GetHp()
 void Stats::SetHP(int someHp)
 {
     this->myHp = someHp;
+}
+
+void Stats::SetStrength(int someStrength)
+{
+    this->myStrength = someStrength;
+}
+
+void Stats::SetStealth(int someStealth)
+{
+    this->myStealth = someStealth;
 }
 
 int Stats::GetStealth()
