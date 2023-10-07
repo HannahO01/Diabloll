@@ -21,7 +21,7 @@ public:
 
 	Stats& GetStats();
 
-	void AddingItem(int someHp, int someStrength, int someStealth);
+	void AddingItem(int someItem); 
 	void TakeDamage(int someDamage);
 
 	const int& GetWinningPoint() const;
@@ -33,5 +33,6 @@ private:
 	Stats myStats;
 	int myCurrentRoom;
 	int myWinningPoint;
+	int myMaxStorage;
 };
 

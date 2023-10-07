@@ -35,7 +35,7 @@ int main()
     int winningPoints = 0;
     Player thePlayer = Player(100, 50, 10, playerName, winningPoints,10);
     thePlayer.GetStats().PrintStats();
-
+    //             enemies, name of room, item in room
     Room room0 = Room(true, "[Living room]", true);
     Room room1 = Room(false, "[Bed Room]", false);
     Room room2 = Room(true, "[Kitchen]", true);

@@ -19,22 +19,27 @@ Room::Room(bool aHasEnemies, std::string aRoomName, bool someItems)
             case 1:
             {
                 AddItems (Items (40, 50, 2, 2, "Heavy Pillow"));
+                break;
             }
             case 2:
             {
                 AddItems (Items (200, 5, 5, 5, "Heavy Jacket"));
+                break;
             }
             case 3:
             {
                 AddItems (Items (1, 1, 1, 1, "smol rock"));
+                break;
             }
             case 4:
             {
                 AddItems (Items (500, 500, 500, 5, "Devils favorite snack"));
+                break;
             }
             case 5:
             {
                 AddItems (Items (100, 1, 1, 1, "One Sock"));
+                break;
             }
             }
     }
@@ -201,13 +206,17 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
 
                 if (pickUpItem == 1) 
                 {
-                    myItems.size ();
+                    for(int i = 0; i < myItems.size (); i++)// change fight
+                    {
+                        std::cout << "[You got " << " ]       ";
+                        aPlayer.GetStats ().PrintStats ();
+                    }
                 }
                 else 
                 {
-
+                    std::cout << "Boring..." << std::endl;
+                        continue;
                 }
-
                 continue;
             }
             case fight:

@@ -1,17 +1,23 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include "Stats.h"
 class Items
 {
 public:
 
-	Items(int aHp, int aStregnth, int aStealth, int aMaxWeight, std::string anItemName);
+	Items (int aHp, int aStregnth, int aStealth, int aMaxWeight, std::string anItemName);
+	Stats& GetStats (); 
+	void SetItemName (std::string someItem); 
+	std::string GetItemName ();
 
 private:
 	int myHp;
 	int myStrength;
 	int myStealth;
 	int myMaxWeight;
+
+	Stats myStats;
 
 	std::string myItemName;
 };

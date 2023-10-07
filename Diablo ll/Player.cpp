@@ -30,7 +30,12 @@ int Player::PickingLock()
 
 int Player::MaxStorage ()
 {
-    return 0;
+    int maxStorage = 5;
+    if(maxStorage >= myMaxStorage)
+    {
+        std::cout << "You cannot carry more things" << std::endl;
+    }
+    return myMaxStorage;
 }
 
 void Player::SetCurrentRoom(int aRoomIndex)
@@ -101,11 +106,11 @@ Stats& Player::GetStats()
     return myStats;
 }
 
-void Player::AddingItem(int someHp, int someStrength, int someStealth)
+void Player::AddingItem(int someItem)
 {
-    myStats.SetHP(someHp);
-    myStats.SetStrength(someStrength);
-    myStats.SetStealth(someStealth);
+    myStats.SetHP(someItem); 
+    myStats.SetStrength(someItem);
+    myStats.SetStealth(someItem); 
 }
 
 void Player::TakeDamage(int someDamage)
@@ -122,3 +127,9 @@ void Player::IncrementWinningPoint()
 {
     myWinningPoint++;
 }
+
+
+struct MyStruct
+{
+
+};
