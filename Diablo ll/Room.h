@@ -4,6 +4,9 @@
 #include "Player.h"
 #include "Door.h"
 #include "Items.h"
+#include "Chest.h"
+#include "Spells.h"
+
 class Room
 {
 	//generate 0-4 enemies in a room
@@ -14,6 +17,7 @@ public:
 	void AddEnemies(Enemy aEnemy);
 	void AddDoor(Door* aDoor);
 	void AddItems(Items anItem);
+	void AddChest (Chest aChest);
 
 	bool Fighting(bool& allowedToLeave, Player& aPlayer);
 	int EnterRoom(Player& aPlayer, int& whatRoom);
@@ -28,5 +32,8 @@ private:
 	std::vector<Door*> myDoors;
 	std::string myRoomName;
 	std::vector<Items> myItems;
+	int myChestItem;
+	std::vector<Spells> mySpells;
 	std::string myItemName;
+	std::vector<Chest> myChest;
 };

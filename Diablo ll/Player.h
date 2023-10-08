@@ -11,6 +11,7 @@ public:
 	int Hunger();		// kill enemy on one hit but lose 50% of health 
 	int PickingLock(); // strength & stealth. working on this 
 	int MaxStorage (int someAmount);
+	int Magic (int & usageTimes);
 
 	void SetCurrentRoom(int aRoomIndex);
 	int GetCurrentRoom();

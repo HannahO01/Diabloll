@@ -1,10 +1,13 @@
 #pragma once
+#include "Player.h"
+#include "Stats.h"
+
 class Spells
 {
 	Spells(int aHp, int aStrength, int aStealth);
 
 public:
-	void UseSpell();
+	int UseSpell(Player& aPlayer, int usageTimes);
 	int TimeLeftOnSpell();
 
 private:

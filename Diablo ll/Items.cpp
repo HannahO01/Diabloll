@@ -14,7 +14,8 @@ void Items::SetItemName (std::string someItem)
 {
 	this->myItemName = someItem;
 }
-
+#include "Tools.h"
+#include "Stats.h"
 std::string Items::GetItemName ()
 {
 	return myItemName;

@@ -44,6 +44,17 @@ int Player::MaxStorage (int someAmount)
     }
 }
 
+int Player::Magic (int& usageTimes)
+{
+     usageTimes = 3;
+    int extraDamage = (myStats.GetStrength() * 2);
+    for(int i = 0; usageTimes > i; i++)//denna bör bara köra max 3 gånger
+    {
+        (extraDamage / 2);
+    }
+    return extraDamage;
+}
+
 void Player::SetCurrentRoom(int aRoomIndex)
 {
     myCurrentRoom = aRoomIndex;

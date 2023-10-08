@@ -5,49 +5,21 @@
 #include "Door.h"
 #include "Enemy.h"
 #include "Stats.h"
+#include "Chest.h"
+#include "Spells.h"
 
 Room::Room(bool aHasEnemies, std::string aRoomName, bool someItems)
 {
     myEnemies;
     myDoors;
     myItems;
+    myChest;
     if(someItems)
     {
-        int randomItem = Random::RandomNumber (1, 5);
-            switch(randomItem)
-            {
-            case 1:
-            {
-                AddItems (Items (40, 50, 2, 2, "Heavy Pillow"));
-                myItemName = "Heavy Pillow";
-                break;
-            }
-            case 2:
-            {
-                AddItems (Items (200, 5, 5, 5, "Heavy Jacket"));
-                myItemName = "Heavy Jacket";
-                break;
-            }
-            case 3:
-            {
-                AddItems (Items (1, 1, 1, 1, "smol rock"));
-                myItemName = "smol rock";
-                break;
-            }
-            case 4:
-            {
-                AddItems (Items (500, 500, 500, 5, "Devils favorite snack"));
-                myItemName = "Devils favorite snack";
-                break;
-            }
-            case 5:
-            {
-                AddItems (Items (100, 1, 1, 1, "One Sock"));
-                myItemName = "One Sock";
-                break;
-            }
-            }
+        //AddChest (Chest (myChestItem, mySpells));
+
     }
+
     if (aHasEnemies)
     {
         int randomRoll = Random::RandomNumber(1, 2);
@@ -69,9 +41,14 @@ void Room::AddDoor(Door* aDoor)
     myDoors.push_back(aDoor);
 }
 
-void Room::AddItems(Items anItem)
+void Room::AddItems(Items anItem)//ta bort senare
 {
     myItems.push_back(anItem);
+}
+
+void Room::AddChest (Chest aChest)
+{
+    myChest.push_back (aChest);
 }
 
 bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
@@ -204,7 +181,6 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
     bool allowedToLeave = false;
     int cheater = 10;
     int wonThisFight = 0;
-    int someweirditem;
 
     std::string roomOptions[4] = { "[1, Open a Chest]", "[2, fight monster ?]", "[3, next room]", "[4, Leave]" };
     if (aPlayer.GetWinningPoint() == 2)
@@ -214,6 +190,7 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
 
     while (aPlayer.GetStats().GetHp() > 0)
     {
+        std::vector<int> removeItem;
         std::cout << "What would you like to do? " << '\n'
             << roomOptions[0] << "    " << roomOptions[1] << "    " << roomOptions[2] << "    " << roomOptions[3] << std::endl;
         std::cin >> action;
@@ -224,41 +201,19 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
             case items:
             {
                 Tools::DeleteText ();
-                int pickUpItem;
-                std::cout << "Would you like to pick up the item?" << '\n' 
-                    << "[1, Yes]        [2, No]" << std::endl;
-                std::cin >> pickUpItem;
 
-                if(myItems.empty())
+                if(myChest.empty ())
                 {
                     std::cout << "[There is no Items in here]" << std::endl;
                 }
 
-                if (pickUpItem == 1) 
+                for(int i = 0; i < myChest.size (); i++)
                 {
-                    for(int i = 0; i < myItems.size (); i++)
-                    {
-                        if(aPlayer.MaxStorage (myItems[i].GetWeight ()) > 6)
-                        {
-                            break;
-                        }
-                        myItems[i].SetItemName (myItemName);
-                        std::cout << "[You got " << myItems[i].GetItemName() << " ]       ";
-                        
-                        aPlayer.GetStats ().SetHP (myItems[i].GetStats ().GetHp ());
-                        aPlayer.GetStats ().SetStrength (myItems[i].GetStats ().GetStrength());
-                        aPlayer.GetStats ().SetStealth (myItems[i].GetStats ().GetStealth ());
-                        aPlayer.GetStats ().SetMaxInventory (myItems[i].GetStats ().GetInventoryWeight ());
-                        
-                        aPlayer.GetStats ().PrintStats (); 
-                    }
+                    myChest[i].OpenChest (aPlayer, myItems, myItemName);
+                    removeItem.push_back (i);
+                    myChest.erase (myChest.begin () + removeItem[i]); 
                 }
-                else 
-                {
-                    std::cout << "Boring..." << std::endl;
-                    Tools::DeleteText (); 
-                        continue;
-                }
+
                 Tools::Wait ();
                 Tools::DeleteText (); 
                 continue;
