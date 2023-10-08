@@ -27,7 +27,14 @@ void Stats::SetStealth(int someStealth)
 
 void Stats::SetMaxInventory (int someInventory)
 {
-    this->myInventory = someInventory;
+    if((myInventory + someInventory) < 6)
+    {
+        this->myInventory += someInventory;
+    }
+    else
+    {
+        myInventory;
+    }
 }
 
 int Stats::GetInventoryWeight ()

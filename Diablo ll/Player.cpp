@@ -33,7 +33,8 @@ int Player::MaxStorage (int someAmount)
     int max = 6;
     if(myMaxStorage <= someAmount || (someAmount + myMaxStorage) < max)
     {
-        return myMaxStorage + someAmount;
+        myMaxStorage + someAmount;
+        return myMaxStorage;
     }
     else
     {

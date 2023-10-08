@@ -136,7 +136,27 @@ bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
             {
                 if (myEnemies[i].GetStats().GetHp() <= 0)
                 {
+                    int awnserLoot;
                     std::cout << "[Enemy " << i + 1 << " is dead]" << std::endl;
+                    myEnemies[i].DroppItems ();
+                    std::cout << "[Dropped " << myEnemies[i].GetItemName() << " ]" << '\n' 
+                        << "Would you like to pick it up?" << '\n' 
+                        << "[1, Yes]        [2, No]" << std::endl;
+                    std::cin >> awnserLoot;
+                    if(awnserLoot == 1)
+                    {
+                        if(aPlayer.MaxStorage (myEnemies[i].GetItemWeight ()) > 6)
+                        {
+                            break;
+                        } 
+                        std::cout << "...thats a bit weird but ok..." << std::endl;
+                        aPlayer.GetStats ().SetMaxInventory (myEnemies[i].GetItemWeight());
+                    }
+                    else
+                    {
+                        std::cout << "Thats fair" << std::endl;
+                    }
+                    
                     enemiesRemove.push_back(i);
                 }
             }
