@@ -1,7 +1,7 @@
 #include "Items.h"
 #include <iostream>
 
-Items::Items(int aHp, int aStregnth, int aStealth, int aMaxWeight, std::string anItemName) : myStats(aHp, aStregnth, aStealth, aMaxWeight)
+Items::Items(int aHp, int aStregnth, int aStealth, int aMaxWeight, std::string anItemName) : myStats(aHp, aStregnth, aStealth, aMaxWeight), myMaxWeight(aMaxWeight)
 {
 }
 
@@ -18,4 +18,9 @@ void Items::SetItemName (std::string someItem)
 std::string Items::GetItemName ()
 {
 	return myItemName;
+}
+
+int Items::GetWeight ()
+{
+	return myMaxWeight;
 }

@@ -3,7 +3,7 @@
 #include "Tools.h"
 #include "Stats.h"
 
-Player::Player(int aHp, int aStrength, int aStealth, std::string aPlayerName, int& aWinningPoint, int aStorage) : myPlayerName(aPlayerName), myStats(aHp, aStrength, aStealth, aStorage), myCurrentRoom(0), myWinningPoint(aWinningPoint)
+Player::Player(int aHp, int aStrength, int aStealth, std::string aPlayerName, int& aWinningPoint, int aStorage) : myPlayerName(aPlayerName), myStats(aHp, aStrength, aStealth, aStorage), myCurrentRoom(0), myWinningPoint(aWinningPoint), myMaxStorage(aStorage)
 {
 }
 
@@ -28,14 +28,19 @@ int Player::PickingLock()
     return myStats.GetStrength() + myStats.GetStealth();
 }
 
-int Player::MaxStorage ()
+int Player::MaxStorage (int someAmount)
 {
-    int maxStorage = 5;
-    if(maxStorage >= myMaxStorage)
+    int max = 6;
+    if(myMaxStorage <= someAmount || (someAmount + myMaxStorage) < max)
     {
-        std::cout << "You cannot carry more things" << std::endl;
+        return myMaxStorage + someAmount;
     }
-    return myMaxStorage;
+    else
+    {
+       std::cout << "[You cannot carry more, weakling]" << std::endl;
+
+        return myMaxStorage;
+    }
 }
 
 void Player::SetCurrentRoom(int aRoomIndex)
@@ -101,16 +106,10 @@ const std::string& Player::GetName() const
 {
     return myPlayerName;
 }
+
 Stats& Player::GetStats()
 {
     return myStats;
-}
-
-void Player::AddingItem(int someItem)
-{
-    myStats.SetHP(someItem); 
-    myStats.SetStrength(someItem);
-    myStats.SetStealth(someItem); 
 }
 
 void Player::TakeDamage(int someDamage)
@@ -127,9 +126,3 @@ void Player::IncrementWinningPoint()
 {
     myWinningPoint++;
 }
-
-
-struct MyStruct
-{
-
-};

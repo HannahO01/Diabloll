@@ -28,4 +28,5 @@ private:
 	std::vector<Door*> myDoors;
 	std::string myRoomName;
 	std::vector<Items> myItems;
+	std::string myItemName;
 };

@@ -33,7 +33,7 @@ int main()
     Tools::Wait();
     Tools::DeleteText();
     int winningPoints = 0;
-    Player thePlayer = Player(100, 50, 10, playerName, winningPoints,10);
+    Player thePlayer = Player(100, 10, 10, playerName, winningPoints,0);
     thePlayer.GetStats().PrintStats();
     //             enemies, name of room, item in room
     Room room0 = Room(true, "[Living room]", true);
@@ -77,7 +77,7 @@ int main()
     if (awnser == 1)
     {
         std::cout << roomList[0].GetRoomName() << std::endl;
-        roomToEnter = roomList[0].EnterRoom(thePlayer, roomToEnter);
+        roomToEnter = roomList[0].EnterRoom (thePlayer, roomToEnter);
 
         while (thePlayer.GetStats().GetHp() > 0 && roomToEnter > -1)
         {

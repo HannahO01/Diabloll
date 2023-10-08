@@ -10,6 +10,7 @@ public:
 	Stats& GetStats (); 
 	void SetItemName (std::string someItem); 
 	std::string GetItemName ();
+	int GetWeight ();
 
 private:
 	int myHp;

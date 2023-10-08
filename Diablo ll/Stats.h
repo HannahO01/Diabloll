@@ -9,6 +9,8 @@ public:
 	void SetHP (int someHp);
 	void SetStrength (int someStrength);
 	void SetStealth (int someStealth);
+	void SetMaxInventory (int someInventory);
+	int GetInventoryWeight ();
 	int GetStealth ();
 	int GetStrength ();
 	void PrintStats ();

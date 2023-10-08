@@ -25,6 +25,16 @@ void Stats::SetStealth(int someStealth)
     this->myStealth = someStealth;
 }
 
+void Stats::SetMaxInventory (int someInventory)
+{
+    this->myInventory = someInventory;
+}
+
+int Stats::GetInventoryWeight ()
+{
+    return myInventory;
+}
+
 int Stats::GetStealth()
 {
     return myStealth;
@@ -41,6 +51,7 @@ void Stats::PrintStats()
         << "HP: " << myHp << '\n'
         << "Strength: " << myStealth << '\n'
         << "Stealth: " << myStrength << '\n'
+        << "Inventory: " << myInventory << '\n'
         << std::endl;
 
 }
