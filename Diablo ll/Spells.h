@@ -4,7 +4,7 @@
 
 class Spells
 {
-	Spells(int aHp, int aStrength, int aStealth);
+	Spells(int aHp, int aStrength, int aStealth, int someInventory);
 
 public:
 	int UseSpell(Player& aPlayer, int aUsageTimes);
@@ -15,6 +15,7 @@ private:
 	int myHp;
 	int myStrength;
 	int myStealth;
+	int myInventory;
 	int const myTime;
 
 };

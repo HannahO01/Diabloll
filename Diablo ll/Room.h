@@ -25,7 +25,8 @@ public:
 	void SetRoomName(const std::string aNameIndex);
 
 	enum Choise { items = 1, fight = 2, rooms = 3, leave = 4, spells = 5 };
-	enum Abilities { Attack = 1, Block = 2, Hunger = 3 };
+	enum Abilities { Attack = 1, Block = 2, Hunger = 3, spellsAttack = 4 };
+	int mySpellCounter;
 
 private:
 	std::vector<Enemy> myEnemies;

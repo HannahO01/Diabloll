@@ -15,9 +15,5 @@ public:
 private:
 	std::string myItemName;
 	std::vector<Items> myVectorItem;
-
-	int mySpells;
-	
-
 };
 

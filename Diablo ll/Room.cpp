@@ -69,6 +69,10 @@ bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
         std::cin >> action;
 
         std::cout << "What would you like to do? " << '\n' << "[1, Attack]      [2, Block]      [3, Hunger]" << std::endl;
+        if(!mySpells.empty ())
+        {
+            std::cout << "or maybe your: [4, Spell????]" << std::endl;
+        }
         std::cin >> abilities;
 
         if (action <= myEnemies.size() && action >= 0)
@@ -101,6 +105,17 @@ bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
                 std::cout << "[Enemy  " << action << "] hp: " << myEnemies[action].GetStats().GetHp() << std::endl;
                 std::cout << "[Player " << action << "] hp: " << aPlayer.GetStats().GetHp() << std::endl;
                 break;
+            }
+            case spellsAttack:
+            {
+                int spellDamage;
+                for(int i = 0; i < mySpells.size (); i++)
+                {
+                    spellDamage = mySpells[i].UseSpell (aPlayer, mySpellCounter);
+                }
+                std::cout << "you attacked: " << spellDamage << std::endl;
+                std::cout << "[Enemy  " << action << "] hp: " << myEnemies[action].GetStats ().GetHp () << std::endl;
+                myEnemies[action].GetStats ().TakeDamage (spellDamage);
             }
             }
             Tools::Wait();
@@ -313,16 +328,39 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
             }
             case spells:
             {
-                int i;
                 if(mySpells.empty ())
                 {
                     std::cout << "[There is no Spells in here]" << std::endl;
                     Tools::Wait ();
                     continue;
                 }
-                AddSpells (mySpells[i]);
+
+                for(int i = 0; i < mySpells.size (); i++)
                 {
-                    
+                    int awnserSpell;
+                    std::cout << "Would you like to use spells? " << '\n'
+                        << "[1, Yes]        [2, No]" << std::endl;
+                    std::cin >> awnserSpell;
+                    if(awnserSpell == 1)
+                    {
+                        std::cout << "[You have a Spell for 3 rooms]" << std::endl;
+                        mySpells[i].TimeLeftOnSpell (mySpellCounter);
+                        if(mySpells[i].IsActive() == 3)
+                        {
+                            removeItem.push_back (i);
+                        }
+                    }
+                    else
+                    {
+                        std::cout << "Welp cant force ya..." << std::endl;
+                        continue;
+                    }
+                    for(int i = 0; i < removeItem.size (); i++)
+                    {
+                        mySpells.erase (mySpells.begin () + removeItem[i]);
+                    }
+                    Tools::Wait ();
+                    continue;
                 }
             }
             }
