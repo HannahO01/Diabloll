@@ -4,9 +4,9 @@
 
 class Spells
 {
-	Spells(int someInventory);
-
 public:
+
+	Spells (int someInventory);
 	int UseSpell(Player& aPlayer, int aUsageTimes);
 	int TimeLeftOnSpell(int someTime);
 	bool IsActive ();
