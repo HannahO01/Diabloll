@@ -1,14 +1,14 @@
 #include "Spells.h"
 
-Spells::Spells (int aHp, int aStrength, int aStealth, int someTime) : myHp(aHp), myStrength(aStrength), myStealth(aStealth), myTime(someTime)
+Spells::Spells (int someTime) : myTime (someTime)
 {
 }
 
 int Spells::UseSpell (Player & aPlayer, int aUsageTimes)
 {
-    aUsageTimes = 3;
+    aUsageTimes = 2;
     int extraDamage = (aPlayer.GetStats().GetStrength() * 2);
-    for(int i = 0; aUsageTimes >= myTime; i++)
+    for(int i = 0; aUsageTimes > myTime; i++)
     {
         std::cout << "[SOME MAGIC STUFF damage: " << extraDamage << " ]" << std::endl;
         (extraDamage / 2);
@@ -25,7 +25,7 @@ int Spells::TimeLeftOnSpell (int someTime)
 
 bool Spells::IsActive ()
 {
-    if(myTime < 3)
+    if(myTime < 2)
     {
         return true;
     }

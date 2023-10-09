@@ -15,7 +15,18 @@ Room::Room(bool aHasEnemies, std::string aRoomName, bool someItems)
     myItems;
     myChest;
     mySpells;
+
+    if(mySpellCounter)
+    {
+        AddSpells (Spells (0));
+    }
+
     myChestItem = someItems;
+    if(someItems)
+    {
+        int randomItem = Random::RandomNumber (1, 5);
+        AddChest (Chest (randomItem)); 
+    }
 
     if (aHasEnemies)
     {
@@ -46,6 +57,11 @@ void Room::AddItems(Items anItem)
 void Room::AddSpells (Spells aSpell)
 {
     mySpells.push_back (aSpell);
+}
+
+void Room::AddChest (Chest aChest)
+{
+    myChest.push_back (aChest);
 }
 
 bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
@@ -216,9 +232,10 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
             {
             case items:
             {
+                
                 Tools::DeleteText ();
 
-                if(myChest.empty () || !myChestItem)
+                if(!myChestItem || myChest.empty ())
                 {
                     std::cout << "[There is no Items in here]" << std::endl;
                     Tools::Wait ();
@@ -343,9 +360,9 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
                     std::cin >> awnserSpell;
                     if(awnserSpell == 1)
                     {
-                        std::cout << "[You have a Spell for 3 rooms]" << std::endl;
+                        std::cout << "[You have a Spell for 2 enemies]" << std::endl;
                         mySpells[i].TimeLeftOnSpell (mySpellCounter);
-                        if(mySpells[i].IsActive() == 3)
+                        if(mySpells[i].IsActive())
                         {
                             removeItem.push_back (i);
                         }
@@ -355,6 +372,7 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
                         std::cout << "Welp cant force ya..." << std::endl;
                         continue;
                     }
+
                     for(int i = 0; i < removeItem.size (); i++)
                     {
                         mySpells.erase (mySpells.begin () + removeItem[i]);

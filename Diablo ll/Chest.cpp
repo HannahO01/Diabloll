@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "Tools.h"
 
-Chest::Chest ()
+Chest::Chest (int aRandomNumber) : myRandomNumber (aRandomNumber)
 {
 }
 
@@ -10,8 +10,8 @@ void Chest::OpenChest (Player& aPlayer, std::vector<Items>& aVectorItem, std::st
 {
     this->myVectorItem = aVectorItem;
     int pickUpItem;
-    int randomItem = Random::RandomNumber (1, 5);
-    switch(randomItem)
+    
+    switch(myRandomNumber)
     {
     case 1:
     {

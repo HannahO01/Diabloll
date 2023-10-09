@@ -7,7 +7,7 @@
 class Chest
 {
 public:
-	Chest ();
+	Chest (int aRandomNumber);
 	void OpenChest (Player & aPlayer, std::vector<Items> & aVectorItem, std::string & aitemName);
 	void AddItems (Items anItem);
 
@@ -15,5 +15,6 @@ public:
 private:
 	std::string myItemName;
 	std::vector<Items> myVectorItem;
+	int myRandomNumber;
 };
 

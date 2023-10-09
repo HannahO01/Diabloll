@@ -18,6 +18,7 @@ public:
 	void AddDoor(Door* aDoor);
 	void AddItems(Items anItem);
 	void AddSpells (Spells aSpell);
+	void AddChest (Chest aChest);
 
 	bool Fighting(bool& allowedToLeave, Player& aPlayer);
 	int EnterRoom(Player& aPlayer, int& whatRoom);
@@ -26,6 +27,7 @@ public:
 
 	enum Choise { items = 1, fight = 2, rooms = 3, leave = 4, spells = 5 };
 	enum Abilities { Attack = 1, Block = 2, Hunger = 3, spellsAttack = 4 };
+
 	int mySpellCounter;
 
 private:
