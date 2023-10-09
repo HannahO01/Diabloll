@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "Tools.h"
 
-Chest::Chest (int anItem, int aSpells) : myItem(anItem), mySpells(aSpells)
+Chest::Chest ()
 {
 }
 
@@ -53,7 +53,6 @@ void Chest::OpenChest (Player& aPlayer, std::vector<Items>& aVectorItem, std::st
     {
         std::cout << "[There is no Items in here]" << std::endl;
     }
-
 
     if(pickUpItem == 1)
     {

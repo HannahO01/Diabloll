@@ -14,11 +14,8 @@ Room::Room(bool aHasEnemies, std::string aRoomName, bool someItems)
     myDoors;
     myItems;
     myChest;
-    if(someItems)
-    {
-        //AddChest (Chest (myChestItem, mySpells));
-
-    }
+    mySpells;
+    myChestItem = someItems;
 
     if (aHasEnemies)
     {
@@ -41,14 +38,14 @@ void Room::AddDoor(Door* aDoor)
     myDoors.push_back(aDoor);
 }
 
-void Room::AddItems(Items anItem)//ta bort senare
+void Room::AddItems(Items anItem)
 {
     myItems.push_back(anItem);
 }
 
-void Room::AddChest (Chest aChest)
+void Room::AddSpells (Spells aSpell)
 {
-    myChest.push_back (aChest);
+    mySpells.push_back (aSpell);
 }
 
 bool Room::Fighting(bool& allowedToLeave, Player& aPlayer)
@@ -182,10 +179,14 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
     int cheater = 10;
     int wonThisFight = 0;
 
-    std::string roomOptions[4] = { "[1, Open a Chest]", "[2, fight monster ?]", "[3, next room]", "[4, Leave]" };
+    std::string roomOptions[5] = { "[1, Open a Chest]", "[2, fight monster ?]", "[3, next room]", "[4, Leave]"};
     if (aPlayer.GetWinningPoint() == 2)
     {
         roomOptions[3] = "[4, You Won!!]";
+    }
+    if(!mySpells.empty ())
+    {
+        roomOptions[4] = "[5, Spells]";
     }
 
     while (aPlayer.GetStats().GetHp() > 0)
@@ -194,7 +195,7 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
         std::cout << "What would you like to do? " << '\n'
             << roomOptions[0] << "    " << roomOptions[1] << "    " << roomOptions[2] << "    " << roomOptions[3] << std::endl;
         std::cin >> action;
-        if (action <= 4 && action >= 0)
+        if (action <= 5 && action >= 0)
         {
             switch (action)
             {
@@ -202,9 +203,11 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
             {
                 Tools::DeleteText ();
 
-                if(myChest.empty ())
+                if(myChest.empty () || !myChestItem)
                 {
                     std::cout << "[There is no Items in here]" << std::endl;
+                    Tools::Wait ();
+                    continue;
                 }
 
                 for(int i = 0; i < myChest.size (); i++)
@@ -307,6 +310,20 @@ int Room::EnterRoom(Player& aPlayer, int& whatRoom)
                 Tools::Wait();
                 return -1;
                 break;
+            }
+            case spells:
+            {
+                int i;
+                if(mySpells.empty ())
+                {
+                    std::cout << "[There is no Spells in here]" << std::endl;
+                    Tools::Wait ();
+                    continue;
+                }
+                AddSpells (mySpells[i]);
+                {
+                    
+                }
             }
             }
         }

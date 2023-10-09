@@ -7,13 +7,12 @@
 class Chest
 {
 public:
-	Chest (int anItem, int aSpells);
+	Chest ();
 	void OpenChest (Player & aPlayer, std::vector<Items> & aVectorItem, std::string & aitemName);
 	void AddItems (Items anItem);
 
 
 private:
-	int myItem;
 	std::string myItemName;
 	std::vector<Items> myVectorItem;
 

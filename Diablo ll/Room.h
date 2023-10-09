@@ -17,14 +17,14 @@ public:
 	void AddEnemies(Enemy aEnemy);
 	void AddDoor(Door* aDoor);
 	void AddItems(Items anItem);
-	void AddChest (Chest aChest);
+	void AddSpells (Spells aSpell);
 
 	bool Fighting(bool& allowedToLeave, Player& aPlayer);
 	int EnterRoom(Player& aPlayer, int& whatRoom);
 	const std::string GetRoomName() const;
 	void SetRoomName(const std::string aNameIndex);
 
-	enum Choise { items = 1, fight = 2, rooms = 3, leave = 4 };
+	enum Choise { items = 1, fight = 2, rooms = 3, leave = 4, spells = 5 };
 	enum Abilities { Attack = 1, Block = 2, Hunger = 3 };
 
 private:
@@ -36,4 +36,5 @@ private:
 	std::vector<Spells> mySpells;
 	std::string myItemName;
 	std::vector<Chest> myChest;
+	bool myRoomHasChest; 
 };
